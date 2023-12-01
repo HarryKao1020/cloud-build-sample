@@ -51,6 +51,6 @@ jobs:
                   DOCKER_REPO=asia-east1-docker.pkg.dev/$PROJECT_ID/docker-image
                   DOCKER_REPO_LOWER=$(echo "$DOCKER_REPO" | tr '[:upper:]' '[:lower:]')
                   docker tag $IMAGE_NAME:latest $DOCKER_REPO:latest
-                  docker tag $IMAGE_NAME:latest $DOCKER_REPO:latest$GIT_TAG
-                  docker push $DOCKER_REPO:latestlatest
-                  docker push $DOCKER_REPO:latest$GIT_TAG
+                  docker tag $IMAGE_NAME:latest $DOCKER_REPO:$GIT_TAG
+                  docker push $DOCKER_REPO:latest
+                  docker push $DOCKER_REPO:$GIT_TAG
