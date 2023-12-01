@@ -13,7 +13,7 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
             # setup-gcloud@v1 ，是指使用setup-gcloud動作的版本號
             - uses: google-github-actions/setup-gcloud@v1
               with:
@@ -34,21 +34,20 @@ jobs:
                   gcloud auth configure-docker --quiet
                   gcloud auth configure-docker asia-east1-docker.pkg.dev --quiet
 
-            #   push image to Container Resgistry , but it end sevice on May 2024.
-            # - name: Push Docker Image to Container Registry (GCR)
-            #   env:
-            #       GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-            #   run: |-
-            #       docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-            #       docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-            #       docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-            #       docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+            # push image to Container Resgistry , but it end sevice on May 2024.
+            - name: Push Docker Image to Container Registry (GCR)
+              env:
+                  GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+              run: |-
+                  docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+                  docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+                  docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+                  docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
             - name: Push Docker Image to Artifact Registry
               env:
-                  GIT_TAG: v.1.0
+                  GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
               run: |-
-
                   DOCKER_REPO=asia-east1-docker.pkg.dev/$PROJECT_ID/docker-images
                   DOCKER_REPO_LOWER=$(echo "$DOCKER_REPO" | tr '[:upper:]' '[:lower:]')
                   docker tag $IMAGE_NAME:latest $DOCKER_REPO:latest
