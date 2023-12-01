@@ -48,7 +48,7 @@ jobs:
               env:
                   GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
               run: |-
-                  DOCKER_REPO=asia-east1-docker.pkg.dev/$PROJECT_ID/docker-image
+                  DOCKER_REPO=asia-east1-docker.pkg.dev/$PROJECT_ID/docker-images
                   DOCKER_REPO_LOWER=$(echo "$DOCKER_REPO" | tr '[:upper:]' '[:lower:]')
                   docker tag $IMAGE_NAME:latest $DOCKER_REPO:latest
                   docker tag $IMAGE_NAME:latest $DOCKER_REPO:$GIT_TAG
