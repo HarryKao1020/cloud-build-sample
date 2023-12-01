@@ -32,7 +32,6 @@ jobs:
             - name: Configure Docker Client
               run: |-
                   gcloud auth configure-docker --quiet
-            # 
                   gcloud auth configure-docker asia-east1-docker.pkg.dev --quiet
 
             #   push image to Container Resgistry , but it end sevice on May 2024.
@@ -49,7 +48,7 @@ jobs:
               env:
                   GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
               run: |-
-                  docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-                  docker tag $IMAGE_NAME:latest us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
-                  docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
-                  docker push us-west2-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+                  docker tag $IMAGE_NAME:latest asia-east1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+                  docker tag $IMAGE_NAME:latest asia-east1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
+                  docker push asia-east1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:latest
+                  docker push asia-east1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME:$GIT_TAG
