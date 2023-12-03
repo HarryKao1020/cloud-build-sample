@@ -22,7 +22,7 @@ jobs:
                   export_default_credentials: true
 
             - name: Authenticate with Google Cloud
-              run: gcloud auth activate-service-account --key-file=${{ secrets.YOUR_GOOGLE_CLOUD_SECRET }}
+              run: gcloud auth activate-service-account --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
 
             - name: Build Docker Image
               run: |-
