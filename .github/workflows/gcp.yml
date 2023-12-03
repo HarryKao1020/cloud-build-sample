@@ -34,7 +34,7 @@ jobs:
                   bash ./scripts/git_update.sh -v major
 
             - name: Authenticate with gcloud non-interactively
-              run: gcloud auth login --no-prompts
+              run:  gcloud auth login --quiet
 
             - name: Configure Docker Client
               run: |-
