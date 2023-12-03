@@ -18,8 +18,8 @@ jobs:
               with:
                   service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
                   project_id: ${{ env.PROJECT_ID }}
-                  install_components: docker
                   export_default_credentials: true
+              run: echo "My secret is ${{ secrets.SERVICE_ACCOUNT_KEY }}"
 
             - name: Build Docker Image
               run: |
