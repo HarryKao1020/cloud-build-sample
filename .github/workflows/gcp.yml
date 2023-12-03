@@ -33,8 +33,8 @@ jobs:
               run: |
                   bash ./scripts/git_update.sh -v major
 
-            - name: Authenticate with gcloud non-interactively
-              run:  gcloud auth login --quiet
+            # - name: Authenticate with gcloud non-interactively
+            #   run:  gcloud auth login --quiet
 
             - name: Configure Docker Client
               run: |-
@@ -43,14 +43,14 @@ jobs:
                   gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://asia-east1-docker.pkg.dev
 
             # push image to Container Resgistry , but it end sevice on May 2024.
-            # - name: Push Docker Image to Container Registry (GCR)
-            #   env:
-            #       GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-            #   run: |-
-            #       docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-            #       docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-            #       docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
-            #       docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+            - name: Push Docker Image to Container Registry (GCR)
+              env:
+                  GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+              run: |-
+                  docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+                  docker tag $IMAGE_NAME:latest gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
+                  docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
+                  docker push gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
             - name: Push Docker Image to Artifact Registry
               env:
