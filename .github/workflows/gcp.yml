@@ -20,6 +20,11 @@ jobs:
                   service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
                   project_id: ${{ env.PROJECT_ID }}
                   export_default_credentials: true
+            - name: Configure Docker for gcloud authentication
+              run: |
+                  echo "$SERVICE_ACCOUNT_KEY" > keyfile.json
+                  gcloud auth activate-service-account --key-file=keyfile.json
+                  gcloud auth configure-docker --quiet
 
             # - name: Authenticate with Google Cloud
             #   run: gcloud auth activate-service-account --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
