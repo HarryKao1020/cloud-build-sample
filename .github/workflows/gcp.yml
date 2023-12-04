@@ -22,7 +22,10 @@ jobs:
                   export_default_credentials: true
 
             - name: Debug gcloud
-              run: gcloud -v
+              run: |-
+                  gcloud -v
+                  ls -l
+                  pwd
 
             - name: Authenticate with Google Cloud
               run: gcloud auth activate-service-account --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}.json
