@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "flask-github-action",
+  "private_key_id": "b50a759716248163eb9ea463363d11d2e4244e35",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4BGqdXJFV8bBq\nm8tVcKDxa6dU8rjqTZd97Kdz2ywKnPKCFnvHLpfdV7/5T8VWeEAZJdK9Gbk39szj\n3Ouyx1lsfUtsOqJ/cCNOJuWZ4kiXYqw7JksXNFjwOGNoVz0zRZ4CkMZhi4rgacX4\nAIudC9nOxVOvLTSG13pKoVi7o36JHIL0tKtc3HCErmrH8zpn9MQPvMDeAe/4oApn\ncCAGWjEOqHT02agBTNH0BZLobAzGyz1vxwH3+3tXdE5LCG6tJyRxunhtzhXJB8r1\nAsr/bnOsQH4/sPVcx20aNANsLJ7Z0CJtkVwE3j7EBtg9QkK173BkYZk1Yl3iDKuK\nVeGvKWzFAgMBAAECggEAAT7KZ+k19JJvorEONbRO6oNTfRAtbyx6P3hoA7EygZnh\nTD8RtF3c2jsbSfkfuT+UE3d9jxkK91V8ungGwk12DfVlGsTkz573JjK+MAXnftrE\nlpviOzR3+5wuFAkvGVc5xAOtzAAxPuaIV+7NAxGO9kbAk7lnFxiDM9kWrCJlm1Dq\nm/YqlsoVO3GyRwButYKoitfAi0mXBnQzg/6v6B33VDy1yj+9p67hS30m5fg4/+6V\n8p1p54c64kZ86iIsG1POhVnl6lhz7RWJrrwm+MvcWNQ5A82La7hpikWCKdL/j1PV\n97uauRZ5/8s5wCihSXWps+MqEBVBmjG+t1mdaJFG6wKBgQD7BTVX7P9etKQk11nQ\nxgaGgjYb2l9qHQjvEoP1iImhxxYqBn0+TXxSGASFpDd7wD8LawghaGazM1CKz7ya\nCQMYcw0c68+SwUxucJUN8B9vf+fVoMnkyOtiOvNQ8t5hAiOR3s8KW+UP4QrchWCR\nV0PuN88cwgLxBh8SAIpKqx2QKwKBgQC7qu/bHFrkfBhJk9VSk5OV3iruTJOfhOAk\nviY769mJrbfL9wBmklCoDWM+1nZjVd3xQNtwUuURKEEXr8YQYmMNWMVydMtFPuC6\nKL64Lt04TX8iZpazfbuRQoH2Gx/XfD5uwBIAcuMyxWp/GqgAZeoLPIXQ3yFEMXIf\n+inRNd6OzwKBgGVwcWIa0AgBj+OjcxQ/MhvhOuR+lthW62lRXio3BwdtYLOS88Hd\npkO2mP04o4NK6S9ADYUSn44DSqUN1fWZdrrGo6HwWW3A15Y5wMJlKw7v7UwTMgNW\nfmiv0ewAeYVSS/WCyMAy6ppEIxOCgse5MCZwPy4r6OxlwOCRf1E1XTkJAoGBAKfL\ndbw+hRJH1ltrH9A+fTYBt/brZw64+sQ/c+YdwZp1RaHLzoLnjdBEcBlOHfpBWzkL\nWWj75S5LBLBODFS384KKfbgRr3HRf5NTPPtng4qE2AiFG3ePEvcVNSg8JmNABn51\no2LdVkEd/FN7HP2GIhY73hXce10CrNzkiyEw/jZHAoGAFfevYoLfZLENAsO6nl4p\nKppTW49ba34JhzsagHQimyaKt0zZl0O3wFue+LTDKcWPPeI66t4g2SPpOHx8dbsn\nxQHHVQTKJUy45awA5WIcBz3Uf/0zr6NlAz+ZSr7+h9ojTQAWPU4NoMWj/mg4oXJf\n4MsxyvU8M5twYY7KAYj/45I=\n-----END PRIVATE KEY-----\n",
+  "client_email": "github-actions@flask-github-action.iam.gserviceaccount.com",
+  "client_id": "104012502539787123370",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github-actions%40flask-github-action.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

@@ -12,16 +12,17 @@ jobs:
 
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
+
             # setup-gcloud@v1 ，是指使用setup-gcloud動作的版本號
-            - uses: google-github-actions/setup-gcloud@latest
+            - uses: google-github-actions/setup-gcloud@v1
               with:
                   service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
                   project_id: ${{ env.PROJECT_ID }}
                   export_default_credentials: true
 
-            # - name: Print Varible
-            #   run: echo "My secret is ${{ secrets.SERVICE_ACCOUNT_KEY }}"
+            - name: Authenticate with Google Cloud
+              run: gcloud auth activate-service-account --key-file=${{ secrets.SERVICE_ACCOUNT_KEY }}
 
             - name: Build Docker Image
               run: |
