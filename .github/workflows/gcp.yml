@@ -21,6 +21,11 @@ jobs:
                   project_id: ${{ env.PROJECT_ID }}
                   export_default_credentials: true
 
+            - uses: google-github-actions/auth@v1
+              with:
+                  credentials: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+                  project_id: ${{ env.PROJECT_ID }}
+
             - name: Debug gcloud
               run: |-
                   gcloud -v
@@ -43,7 +48,6 @@ jobs:
               run: |-
                   gcloud auth configure-docker --quiet
                   gcloud auth configure-docker asia-east1-docker.pkg.dev --quiet
-                  docker login -u _json_key --password-stdin https://asia-east1-docker.pkg.dev
 
             # push image to Container Resgistry , but it end sevice on May 2024.
             # - name: Push Docker Image to Container Registry (GCR)
