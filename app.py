@@ -4,10 +4,10 @@ app = Flask(__name__)
 
 
 @app.get("/hello")
-def index():
+def helloworld():
     return "Hello world"
 
-@app.get("/")
+@app.route('/')
 def index():
     return "welcome to flask"
 
