@@ -64,4 +64,4 @@ jobs:
             # 自動把最新的image給cloud run的service使用
             - name: Deploy to Cloud Run
               run: |
-                  gcloud run deploy cloudrun-flask --image=asia-east1-docker.pkg.dev/$PROJECT_ID/docker-images/$IMAGE_REPO:latest --plateform=managed --region=asia-east1
+                  gcloud run deploy cloudrun-flask --image=asia-east1-docker.pkg.dev/$PROJECT_ID/docker-images/$IMAGE_REPO:latest --platform=managed --region=asia-east1
