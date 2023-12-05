@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-
+# cloud run上
 CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0" ,"--port=8080"]
+
+#本地測試
 # CMD [ "python", "app.py"]
