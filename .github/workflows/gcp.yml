@@ -29,8 +29,7 @@ jobs:
 
             - name: Authenticate with Google Cloud
               run: |
-                  echo "${{ secrets.SERVICE_ACCOUNT_KEY }}" > /home/runner/work/cloud-build-sample/cloud-build-sample/keyfile.json
-                  gcloud auth activate-service-account --key-file=/home/runner/work/cloud-build-sample/cloud-build-sample/keyfile.json
+                  gcloud auth activate-service-account --key-file=/home/runner/work/cloud-build-sample/cloud-build-sample/flask-github-action-b50a75971624.json
 
             - name: Build Docker Image
               run: |
