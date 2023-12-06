@@ -1,69 +1,72 @@
-from flask import Flask, request, abort
+import os
 
-from linebot.v3 import (
-    WebhookHandler
-)
-from linebot.v3.exceptions import (
-    InvalidSignatureError
-)
-from linebot.v3.messaging import (
-    Configuration,
-    ApiClient,
-    MessagingApi,
-    ReplyMessageRequest,
-    TextMessage
-)
-from linebot.v3.webhooks import (
-    MessageEvent,
-    TextMessageContent
-)
+from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
 app = Flask(__name__)
 
-CHANNEL_ACCESS_TOKEN='gIS4eSAOyETZv18tiyNcT4ZZ6274L9UuhLjSowpDjuqYf4dFCNB37+saXJfI1FSr85uiKqqrhteAxVCD3Yjalx/4zC3rshDGfm1/xZXIZmf4pFY2HYnRLs3LqbNiJAmBXAIOwCqSEZTqqnzNa8mfkwdB04t89/1O/w1cDnyilFU='
-CHANNEL_SECRET='04279870980e7421fbf1b27cc03165c2'
-configuration = Configuration(access_token=CHANNEL_ACCESS_TOKEN)
-handler = WebhookHandler(CHANNEL_SECRET)
 
+# 替換成你的 Channel Access Token 和 Channel Secret
+# CHANNEL_ACCESS_TOKEN='gIS4eSAOyETZv18tiyNcT4ZZ6274L9UuhLjSowpDjuqYf4dFCNB37+saXJfI1FSr85uiKqqrhteAxVCD3Yjalx/4zC3rshDGfm1/xZXIZmf4pFY2HYnRLs3LqbNiJAmBXAIOwCqSEZTqqnzNa8mfkwdB04t89/1O/w1cDnyilFU='
+# CHANNEL_SECRET='04279870980e7421fbf1b27cc03165c2'
+
+# for local test
+# line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+# handler = WebhookHandler(CHANNEL_SECRET)
+
+# for cloud run test
+line_bot_api = LineBotApi(os.environ.get('CHANNEL_ACCESS_TOKEN'))
+handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
+
+
+# 在應用程式啟動時主動發送歡迎訊息給所有已關注的使用者
+# def push_welcome_message_to_all_users():
+#     try:
+#         # 主動發送歡迎訊息
+#         line_bot_api.broadcast(
+#             TextSendMessage(text="哈囉！歡迎使用 Line Bot！")
+#         )
+#     except LineBotApiError as e:
+#         print(f"推送歡迎訊息失敗，錯誤訊息：{e}")
+
+# # 在應用程式啟動時執行初始化推送
+# push_welcome_message_to_all_users()
+
+
+line_bot_api.push_message('U2032ae75254e026706d91546f58b9af1', TextSendMessage(text='你可以開始了'))
+# 綁定 Line Bot 的 Webhook URL
+
+
+@app.route("/hello")
+def sayhi():
+    return "Hello world"
 
 @app.route("/callback", methods=['POST'])
 def callback():
-    # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
-
-    # get request body as text
     body = request.get_data(as_text=True)
-    app.logger.info("Request body: " + body)
 
-    # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
-        app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
         abort(400)
 
     return 'OK'
 
-
-@handler.add(MessageEvent, message=TextMessageContent)
+@handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    user_text = event.message.text
+    reply_text = f'你說的是：{user_text}'
 
-    user_message = event.message.text
-    reply_message = f"You said: {user_message}"
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=reply_text)
+    )
 
-    with ApiClient(configuration) as api_client:
-        line_bot_api = MessagingApi(api_client)
-        line_bot_api.reply_message_with_http_info(
-            ReplyMessageRequest(
-                reply_token=event.reply_token,
-                messages=[TextMessage(text=reply_message)]
-            )
-        )
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
-@app.route('/')
-def index():
-    return "welcome line bot"
 
-# if __name__ == "__main__":
-#     app.run()
