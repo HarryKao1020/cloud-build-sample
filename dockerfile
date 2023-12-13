@@ -22,4 +22,4 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 在這裡執行你的 Python 程式
-CMD [ "python", "web_crawler.py" ]
+CMD [ "python", "app.py" ]
