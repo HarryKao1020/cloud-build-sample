@@ -6,3 +6,10 @@ MarkupSafe==2.0.1
 Werkzeug==2.0.2
 line-bot-sdk==3.5.1
 requests ==2.31.0
+numpy
+beautifulsoup4
+requests
+pandas
+datetime 
+matplotlib
+mpl_finance

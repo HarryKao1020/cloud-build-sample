@@ -4,6 +4,8 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from web_crawler import simple_web_crawler, headless_web_crawler, beautifulsoup_web_crawler
+
 
 app = Flask(__name__)
 
@@ -68,6 +70,9 @@ def handle_message(event):
 port = int(os.environ.get('PORT', 8080))
 
 if __name__ == "__main__":
+    simple_web_crawler()  # 執行基本爬蟲程式
+    headless_web_crawler()  # 執行 headless 爬蟲程式
+    beautifulsoup_web_crawler()  # 執行 BeautifulSoup 爬蟲程式
     app.run(debug=True, port=port, host='0.0.0.0')
 
 
