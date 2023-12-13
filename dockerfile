@@ -2,10 +2,8 @@ FROM python:3.10-slim-buster
 
 WORKDIR /app
 
-
-
 # 安裝 Chrome 和相依的套件
-RUN apt-get update && apt-get install -y wget gnupg \
+RUN apt-get update && apt-get install -y wget unzip gnupg \
     && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
     && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list \
     && apt-get update && apt-get install -y google-chrome-stable
@@ -17,14 +15,11 @@ RUN wget https://chromedriver.storage.googleapis.com/LATEST_RELEASE -O /tmp/chro
     && chmod +x /usr/local/bin/chromedriver \
     && rm /tmp/chromedriver_latest /tmp/chromedriver.zip
 
-COPY requirements.txt requirements.txt
-
-RUN pip install --no-cache-dir -r requirements.txt
-
+# 複製所有程式碼到工作目錄
 COPY . .
 
-# cloud run上
-# CMD [ "python", "-m" , "flask", "run", "--host=0.0.0.0"]
+# 安裝所需 Python 套件
+RUN pip install --no-cache-dir -r requirements.txt
 
-#本地測試
-CMD [ "python", "app.py"]
+# 在這裡執行你的 Python 程式
+CMD [ "python", "web_crawler.py" ]
