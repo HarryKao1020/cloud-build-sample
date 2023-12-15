@@ -13,7 +13,11 @@ WORKDIR /app
 # 複製所有程式碼到工作目錄
 COPY . .
 
-RUN chmod +x ./webdriver/msedgedriver_linux
+# 複製 msedgedriver_linux 到/app/webdriver
+COPY webdriver/msedgedriver_linux /app/webdriver/msedgedriver_linux
+
+# 設定 msedgedriver_linux 的執行權限
+RUN chmod +x /app/webdriver/msedgedriver_linux
 
 # 安裝所需 Python 套件
 RUN pip install --no-cache-dir -r requirements.txt

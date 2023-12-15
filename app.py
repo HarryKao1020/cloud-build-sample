@@ -13,14 +13,14 @@ app = Flask(__name__)
 
 
 # for local test
-# CHANNEL_ACCESS_TOKEN='gIS4eSAOyETZv18tiyNcT4ZZ6274L9UuhLjSowpDjuqYf4dFCNB37+saXJfI1FSr85uiKqqrhteAxVCD3Yjalx/4zC3rshDGfm1/xZXIZmf4pFY2HYnRLs3LqbNiJAmBXAIOwCqSEZTqqnzNa8mfkwdB04t89/1O/w1cDnyilFU='
-# CHANNEL_SECRET='04279870980e7421fbf1b27cc03165c2'
-# line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
-# handler = WebhookHandler(CHANNEL_SECRET)
+CHANNEL_ACCESS_TOKEN='gIS4eSAOyETZv18tiyNcT4ZZ6274L9UuhLjSowpDjuqYf4dFCNB37+saXJfI1FSr85uiKqqrhteAxVCD3Yjalx/4zC3rshDGfm1/xZXIZmf4pFY2HYnRLs3LqbNiJAmBXAIOwCqSEZTqqnzNa8mfkwdB04t89/1O/w1cDnyilFU='
+CHANNEL_SECRET='04279870980e7421fbf1b27cc03165c2'
+line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(CHANNEL_SECRET)
 
 # for cloud run test
-line_bot_api = LineBotApi(os.environ.get('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
+# line_bot_api = LineBotApi(os.environ.get('CHANNEL_ACCESS_TOKEN'))
+# handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
 
 
 # 在應用程式啟動時主動發送歡迎訊息給所有已關注的使用者
