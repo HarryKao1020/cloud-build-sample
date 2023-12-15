@@ -25,9 +25,11 @@ edge_driver_path = absolute_path
 
 def scraple_website(url):
 
+    # Edge for windows
+    # edge_driver_path = './webdriver/msedgedriver_windows.exe'
 
-    # Edge
-    edge_driver_path = './msedgedriver.exe'
+    # Edge for linux
+    edge_driver_path = './webdriver/msedgedriver_linux'
 
     #設定 Edge WebDriver 的選項
     edge_options = webdriver.EdgeOptions()
@@ -120,5 +122,5 @@ def getMaintenanceMargin():
 
 
 # 測試
-# print(getFearIndex())
-# print(getMaintenanceMargin()['大盤融資維持率'])
+print(getFearIndex())
+print(getMaintenanceMargin()['大盤融資維持率'])
