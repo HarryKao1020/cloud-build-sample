@@ -22,7 +22,7 @@ edge_driver_path = absolute_path
 
 
 
-
+# web driver 設定
 def scraple_website(url):
 
     # Edge for windows
@@ -64,6 +64,7 @@ def scraple_website(url):
 
     return soup
 
+# 取得Fear index
 def getFearIndex():
     url = "https://alternative.me/crypto/fear-and-greed-index/"
     soup = scraple_website(url)
@@ -101,6 +102,8 @@ def getFearIndex():
 
     return fear_index_data
 
+
+# 取得大盤融資維持率
 def getMaintenanceMargin():
     url = "https://www.istock.tw/post/twmarginrequirement"
     soup = scraple_website(url)
@@ -122,5 +125,5 @@ def getMaintenanceMargin():
 
 
 # 測試
-print(getFearIndex())
-print(getMaintenanceMargin()['大盤融資維持率'])
+# print(getFearIndex())
+# print(getMaintenanceMargin()['大盤融資維持率'])
