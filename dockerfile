@@ -16,7 +16,7 @@ COPY . .
 # 安裝所需 Python 套件
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN chmod +x msedgedriver_linux
+RUN chmod +x webdriver/msedgedriver_linux
 
 # 在這裡執行你的 Python 程式
 CMD [ "python", "app.py" ]
