@@ -4,15 +4,13 @@ from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-from web_crawler import simple_web_crawler, headless_web_crawler, beautifulsoup_web_crawler
+from web_crawler import getFearIndex,getMaintenanceMargin
 
 
 app = Flask(__name__)
 
 
-# 替換成你的 Channel Access Token 和 Channel Secret
-# CHANNEL_ACCESS_TOKEN='gIS4eSAOyETZv18tiyNcT4ZZ6274L9UuhLjSowpDjuqYf4dFCNB37+saXJfI1FSr85uiKqqrhteAxVCD3Yjalx/4zC3rshDGfm1/xZXIZmf4pFY2HYnRLs3LqbNiJAmBXAIOwCqSEZTqqnzNa8mfkwdB04t89/1O/w1cDnyilFU='
-# CHANNEL_SECRET='04279870980e7421fbf1b27cc03165c2'
+
 
 # for local test
 # line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
@@ -60,7 +58,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     user_text = event.message.text
-    reply_text = f'你說的是：{user_text}'
+
+    if "大盤融資維持率" in user_text:
+        maintenance = getMaintenanceMargin()['大盤融資維持率']
+        reply_text = f'大盤融資維持率：{maintenance}'
+    else: 
+        reply_text =  f'你說的是：{user_text}'
+
 
     line_bot_api.reply_message(
         event.reply_token,
@@ -72,9 +76,7 @@ def handle_message(event):
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
     app.run(debug=True, port=port, host='0.0.0.0')
-    # simple_web_crawler()  # 執行基本爬蟲程式
-    # headless_web_crawler()  # 執行 headless 爬蟲程式
-    # beautifulsoup_web_crawler()  # 執行 BeautifulSoup 爬蟲程式
+    
 
 
 
