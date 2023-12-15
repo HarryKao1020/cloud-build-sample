@@ -25,47 +25,37 @@ edge_driver_path = absolute_path
 
 def scraple_website(url):
 
-    
-    """ Chrome
-    # 設定 Chrome WebDriver 的選項
-    chrome_options = webdriver.ChromeOptions()
-
-    #設定頁面的載入策略: 
-    #normal-等待整個頁面家載完畢才執行
-    #eager-等待dom樹加載完成，放棄圖片...等加載
-    chrome_options.page_load_strategy='normal'
-
-    # 禁止圖片加載
-    chrome_options.add_argument("--blink-settings=imagesEnabled=false")
-    chrome_options.add_argument('--headless')  # 启用无头模式
-    chrome_options.add_argument('--disable-gpu')  # 禁用GPU加速
-
-    # 设置WebDriver的路径
-    #webdriver_path = '/Users/harry/Desktop/stocknotify_linebot'
-
-    #    建一個Chrome實例
-    driver = webdriver.Chrome(options=chrome_options)
-
-    """
-
 
     # Edge
     edge_driver_path = './msedgedriver.exe'
+
+    #設定 Edge WebDriver 的選項
+    edge_options = webdriver.EdgeOptions()
+    edge_options.use_chromium = True
+
+    # 設定為 headless 模式
+    edge_options.add_argument('--headless')
+    edge_options.add_argument('--disable-gpu')  # 禁用GPU加速
+
     s = Service(executable_path=edge_driver_path)
-    driver = webdriver.Edge(service=s)
+    driver = webdriver.Edge(service=s, options=edge_options)
 
 
 
-    # 打开目标URL
+    # 打開URL
     driver.get(url)
 
     # 等待頁面加载完成的時間
     # driver.implicitly_wait(10)
 
     
+    
+    # 在這裡加入等待頁面載入的程式碼，如果需要的話
+
     page_content = driver.page_source
 
-    soup = BeautifulSoup(page_content,'html.parser')
+    soup = BeautifulSoup(page_content, 'html.parser')
+
 
     # 關閉
     # driver.quit()
