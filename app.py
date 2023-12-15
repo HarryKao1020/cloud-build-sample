@@ -37,7 +37,7 @@ handler = WebhookHandler(os.environ.get('CHANNEL_SECRET'))
 # push_welcome_message_to_all_users()
 
 
-line_bot_api.push_message('U2032ae75254e026706d91546f58b9af1', TextSendMessage(text='你可以開始了'))
+line_bot_api.push_message('U2032ae75254e026706d91546f58b9af1', TextSendMessage(text='Hello,我是股市小幫手'))
 # 綁定 Line Bot 的 Webhook URL
 
 
@@ -72,9 +72,9 @@ def handle_message(event):
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 8080))
     app.run(debug=True, port=port, host='0.0.0.0')
-    simple_web_crawler()  # 執行基本爬蟲程式
-    headless_web_crawler()  # 執行 headless 爬蟲程式
-    beautifulsoup_web_crawler()  # 執行 BeautifulSoup 爬蟲程式
+    # simple_web_crawler()  # 執行基本爬蟲程式
+    # headless_web_crawler()  # 執行 headless 爬蟲程式
+    # beautifulsoup_web_crawler()  # 執行 BeautifulSoup 爬蟲程式
 
 
 
